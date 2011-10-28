@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "soccerChampionship", "soccerChampionship\soccerChampionship.csproj", "{976FF9F5-A8D4-4AED-A3D0-9B325572BAE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "soccerChampionship.Web", "soccerChampionship.Web\soccerChampionship.Web.csproj", "{EA9608A2-6C9B-4CD4-BEA8-C176B44D4305}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{976FF9F5-A8D4-4AED-A3D0-9B325572BAE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{976FF9F5-A8D4-4AED-A3D0-9B325572BAE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{976FF9F5-A8D4-4AED-A3D0-9B325572BAE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{976FF9F5-A8D4-4AED-A3D0-9B325572BAE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA9608A2-6C9B-4CD4-BEA8-C176B44D4305}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA9608A2-6C9B-4CD4-BEA8-C176B44D4305}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA9608A2-6C9B-4CD4-BEA8-C176B44D4305}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA9608A2-6C9B-4CD4-BEA8-C176B44D4305}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
