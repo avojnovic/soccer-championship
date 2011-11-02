@@ -1,0 +1,8 @@
+c:\users\damian\documents\visual studio 2010\Projects\SoccerChampionship\Soccer\sql\debug\Soccer_Script.PreDeployment.sql
+c:\users\damian\documents\visual studio 2010\Projects\SoccerChampionship\Soccer\sql\debug\Soccer_Script.PostDeployment.sql
+c:\users\damian\documents\visual studio 2010\Projects\SoccerChampionship\Soccer\sql\debug\Soccer_Database.sqlsettings
+c:\users\damian\documents\visual studio 2010\Projects\SoccerChampionship\Soccer\sql\debug\Soccer_Database.sqldeployment
+c:\users\damian\documents\visual studio 2010\Projects\SoccerChampionship\Soccer\sql\debug\Soccer_Database.sqlcmdvars
+c:\users\damian\documents\visual studio 2010\Projects\SoccerChampionship\Soccer\sql\debug\Soccer.deploymanifest
+c:\users\damian\documents\visual studio 2010\Projects\SoccerChampionship\Soccer\sql\debug\Soccer.dbschema
+c:\users\damian\documents\visual studio 2010\Projects\SoccerChampionship\Soccer\obj\Debug\Soccer.dbschema
