@@ -1,3 +1,0 @@
-﻿ALTER TABLE [dbo].[GameDay]
-	ADD CONSTRAINT [PK_GameDay]
-	PRIMARY KEY (ID)
