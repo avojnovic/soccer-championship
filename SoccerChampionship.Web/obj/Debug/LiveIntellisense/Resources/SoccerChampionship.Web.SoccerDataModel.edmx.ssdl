@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SoccerModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="SoccerModelStoreContainer">
+    <EntitySet Name="Category" EntityType="SoccerModel.Store.Category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Game" EntityType="SoccerModel.Store.Game" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GameDay" EntityType="SoccerModel.Store.GameDay" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GamePayments" EntityType="SoccerModel.Store.GamePayments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Player" EntityType="SoccerModel.Store.Player" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PlayerStatics" EntityType="SoccerModel.Store.PlayerStatics" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RegistrationPayments" EntityType="SoccerModel.Store.RegistrationPayments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Team" EntityType="SoccerModel.Store.Team" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tournament" EntityType="SoccerModel.Store.Tournament" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_CategoryID_Category" Association="SoccerModel.Store.FK_CategoryID_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Team" EntitySet="Team" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CategoryID_Category_2" Association="SoccerModel.Store.FK_CategoryID_Category_2">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Tournament" EntitySet="Tournament" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GameDayID_GameDay" Association="SoccerModel.Store.FK_GameDayID_GameDay">
+      <End Role="GameDay" EntitySet="GameDay" />
+      <End Role="PlayerStatics" EntitySet="PlayerStatics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GameID_Game" Association="SoccerModel.Store.FK_GameID_Game">
+      <End Role="Game" EntitySet="Game" />
+      <End Role="GamePayments" EntitySet="GamePayments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IDGameDay_GameDay" Association="SoccerModel.Store.FK_IDGameDay_GameDay">
+      <End Role="GameDay" EntitySet="GameDay" />
+      <End Role="Game" EntitySet="Game" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IDTournament_Tournament" Association="SoccerModel.Store.FK_IDTournament_Tournament">
+      <End Role="Tournament" EntitySet="Tournament" />
+      <End Role="GameDay" EntitySet="GameDay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlayerID_Player" Association="SoccerModel.Store.FK_PlayerID_Player">
+      <End Role="Player" EntitySet="Player" />
+      <End Role="PlayerStatics" EntitySet="PlayerStatics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Team1_Team" Association="SoccerModel.Store.FK_Team1_Team">
+      <End Role="Team" EntitySet="Team" />
+      <End Role="Game" EntitySet="Game" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Team2_Team" Association="SoccerModel.Store.FK_Team2_Team">
+      <End Role="Team" EntitySet="Team" />
+      <End Role="Game" EntitySet="Game" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TeamID_Team" Association="SoccerModel.Store.FK_TeamID_Team">
+      <End Role="Team" EntitySet="Team" />
+      <End Role="Player" EntitySet="Player" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TeamID_Team_2" Association="SoccerModel.Store.FK_TeamID_Team_2">
+      <End Role="Team" EntitySet="Team" />
+      <End Role="RegistrationPayments" EntitySet="RegistrationPayments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TeamID_Team_3" Association="SoccerModel.Store.FK_TeamID_Team_3">
+      <End Role="Team" EntitySet="Team" />
+      <End Role="GamePayments" EntitySet="GamePayments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TournamentID_Tournament" Association="SoccerModel.Store.FK_TournamentID_Tournament">
+      <End Role="Tournament" EntitySet="Tournament" />
+      <End Role="RegistrationPayments" EntitySet="RegistrationPayments" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Game">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="GameDayID" Type="int" Nullable="false" />
+    <Property Name="StartTime" Type="datetime" Nullable="false" />
+    <Property Name="Team1ID" Type="int" Nullable="false" />
+    <Property Name="Team2ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GameDay">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TournamentID" Type="int" Nullable="false" />
+    <Property Name="GameDate" Type="date" Nullable="false" />
+    <Property Name="GameAmount" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GamePayments">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="GameID" Type="int" Nullable="false" />
+    <Property Name="TeamID" Type="int" Nullable="false" />
+    <Property Name="PaidDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Player">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Dni" Type="int" Nullable="false" />
+    <Property Name="Mail" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Address" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Phone" Type="varchar" MaxLength="100" />
+    <Property Name="TeamID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PlayerStatics">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="PlayerID" Type="int" Nullable="false" />
+    <Property Name="GameDayID" Type="int" Nullable="false" />
+    <Property Name="RedCard" Type="int" Nullable="false" />
+    <Property Name="YellowCards" Type="int" Nullable="false" />
+    <Property Name="Goals" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RegistrationPayments">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TournamentID" Type="int" Nullable="false" />
+    <Property Name="TeamID" Type="int" Nullable="false" />
+    <Property Name="PaidDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Team">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tournament">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="StartDate" Type="date" Nullable="false" />
+    <Property Name="RegistrationAmount" Type="money" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_CategoryID_Category">
+    <End Role="Category" Type="SoccerModel.Store.Category" Multiplicity="1" />
+    <End Role="Team" Type="SoccerModel.Store.Team" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Team">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CategoryID_Category_2">
+    <End Role="Category" Type="SoccerModel.Store.Category" Multiplicity="1" />
+    <End Role="Tournament" Type="SoccerModel.Store.Tournament" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tournament">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GameDayID_GameDay">
+    <End Role="GameDay" Type="SoccerModel.Store.GameDay" Multiplicity="1" />
+    <End Role="PlayerStatics" Type="SoccerModel.Store.PlayerStatics" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GameDay">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PlayerStatics">
+        <PropertyRef Name="GameDayID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GameID_Game">
+    <End Role="Game" Type="SoccerModel.Store.Game" Multiplicity="1" />
+    <End Role="GamePayments" Type="SoccerModel.Store.GamePayments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Game">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GamePayments">
+        <PropertyRef Name="GameID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IDGameDay_GameDay">
+    <End Role="GameDay" Type="SoccerModel.Store.GameDay" Multiplicity="1" />
+    <End Role="Game" Type="SoccerModel.Store.Game" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GameDay">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="GameDayID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IDTournament_Tournament">
+    <End Role="Tournament" Type="SoccerModel.Store.Tournament" Multiplicity="1" />
+    <End Role="GameDay" Type="SoccerModel.Store.GameDay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tournament">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GameDay">
+        <PropertyRef Name="TournamentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlayerID_Player">
+    <End Role="Player" Type="SoccerModel.Store.Player" Multiplicity="1" />
+    <End Role="PlayerStatics" Type="SoccerModel.Store.PlayerStatics" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PlayerStatics">
+        <PropertyRef Name="PlayerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Team1_Team">
+    <End Role="Team" Type="SoccerModel.Store.Team" Multiplicity="1" />
+    <End Role="Game" Type="SoccerModel.Store.Game" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="Team1ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Team2_Team">
+    <End Role="Team" Type="SoccerModel.Store.Team" Multiplicity="1" />
+    <End Role="Game" Type="SoccerModel.Store.Game" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="Team2ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TeamID_Team">
+    <End Role="Team" Type="SoccerModel.Store.Team" Multiplicity="1" />
+    <End Role="Player" Type="SoccerModel.Store.Player" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Player">
+        <PropertyRef Name="TeamID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TeamID_Team_2">
+    <End Role="Team" Type="SoccerModel.Store.Team" Multiplicity="1" />
+    <End Role="RegistrationPayments" Type="SoccerModel.Store.RegistrationPayments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RegistrationPayments">
+        <PropertyRef Name="TeamID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TeamID_Team_3">
+    <End Role="Team" Type="SoccerModel.Store.Team" Multiplicity="1" />
+    <End Role="GamePayments" Type="SoccerModel.Store.GamePayments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GamePayments">
+        <PropertyRef Name="TeamID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TournamentID_Tournament">
+    <End Role="Tournament" Type="SoccerModel.Store.Tournament" Multiplicity="1" />
+    <End Role="RegistrationPayments" Type="SoccerModel.Store.RegistrationPayments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tournament">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RegistrationPayments">
+        <PropertyRef Name="TournamentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
