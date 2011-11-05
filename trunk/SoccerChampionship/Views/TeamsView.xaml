@@ -1,0 +1,57 @@
+﻿<vw:PageBase x:Class="SoccerChampionship.Views.TeamsView" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="Teams Page" 
+           xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" 
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+           xmlns:vw="clr-namespace:SoccerChampionship.Views">
+    <Grid x:Name="LayoutRoot">
+        <StackPanel x:Name="ContentStackPanel" Style="{StaticResource ContentStackPanelStyle}">
+            <TextBlock Text="Jugadores" Style="{StaticResource HeaderTextStyle}" />
+            <telerik:RadGridView 
+                Height="300" 
+                Name="TeamsGV"
+                IsReadOnly="False"
+                AddingNewDataItem="TeamsGV_AddingNewDataItem"
+                AutoGenerateColumns="False"
+                ShowInsertRow="True"
+                CanUserFreezeColumns="True"
+                FrozenColumnCount="2"
+                SelectionUnit="FullRow">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn UniqueName="Name" Header="Nombre" DataMemberBinding="{Binding Name}"  />
+                    <telerik:GridViewDataColumn UniqueName="Category" Header="Categoria" DataMemberBinding="{Binding Path=Category}">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Category.Name}" />
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                        <telerik:GridViewDataColumn.CellEditTemplate>
+                            <DataTemplate>
+                                <telerik:RadComboBox DisplayMemberPath="Name" />
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellEditTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewColumn Header="Eliminar">
+                        <telerik:GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Eliminar" x:Name="btnDelete" Tag="{Binding }" Click="btnDelete_Click" />
+                            </DataTemplate>
+                        </telerik:GridViewColumn.CellTemplate>
+                    </telerik:GridViewColumn>
+
+                </telerik:RadGridView.Columns>
+
+            </telerik:RadGridView>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="btnSave" Content="Guardar" Click="btnSave_Click" Margin="5" />
+                <Button x:Name="btnCancel" Content="Cancelar" Click="btnCancel_Click" Margin="5" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</vw:PageBase>
