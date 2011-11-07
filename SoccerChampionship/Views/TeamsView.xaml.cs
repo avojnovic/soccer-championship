@@ -75,9 +75,10 @@ namespace SoccerChampionship.Views
 
         private void Save()
         {
-            foreach (Player p in Context.Players.Where(x => x.ID == 0))
+            foreach (Team p in Context.Teams.Where(x => x.ID == 0))
             {
-                Context.Players.Add(p);
+                if( !Context.Teams.Contains(p))
+                    Context.Teams.Add(p);
             }
 
             Context.SubmitChanges();
@@ -89,6 +90,11 @@ namespace SoccerChampionship.Views
             Teams.Add(team);
 
             TeamsGV.ItemsSource = Teams;
+
+            TeamsGV.CurrentCellInfo = new GridViewCellInfo(TeamsGV.Items[TeamsGV.Items.ItemCount - 1], TeamsGV.Columns[0]);
+            TeamsGV.Focus();
+            TeamsGV.BeginEdit();
+
 
         }
 
