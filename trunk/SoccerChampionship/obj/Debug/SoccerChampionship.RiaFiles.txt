@@ -1,2 +1,0 @@
-C:\Users\damian\Documents\Visual Studio 2010\Projects\SoccerChampionship\SoccerChampionship\Generated_Code\SoccerChampionship.Web.g.cs
-C:\Users\damian\Documents\Visual Studio 2010\Projects\SoccerChampionship\SoccerChampionship\Generated_Code\Models\Shared\User.shared.cs

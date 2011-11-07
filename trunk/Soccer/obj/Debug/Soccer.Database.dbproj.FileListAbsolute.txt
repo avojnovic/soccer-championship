@@ -1,8 +1,0 @@
-C:\Users\damian\Documents\Visual Studio 2010\Projects\SoccerChampionship\Soccer\sql\debug\Soccer_Script.PreDeployment.sql
-C:\Users\damian\Documents\Visual Studio 2010\Projects\SoccerChampionship\Soccer\sql\debug\Soccer_Script.PostDeployment.sql
-C:\Users\damian\Documents\Visual Studio 2010\Projects\SoccerChampionship\Soccer\sql\debug\Soccer_Database.sqlsettings
-C:\Users\damian\Documents\Visual Studio 2010\Projects\SoccerChampionship\Soccer\sql\debug\Soccer_Database.sqldeployment
-C:\Users\damian\Documents\Visual Studio 2010\Projects\SoccerChampionship\Soccer\sql\debug\Soccer_Database.sqlcmdvars
-C:\Users\damian\Documents\Visual Studio 2010\Projects\SoccerChampionship\Soccer\sql\debug\Soccer.Database.deploymanifest
-C:\Users\damian\Documents\Visual Studio 2010\Projects\SoccerChampionship\Soccer\sql\debug\Soccer.Database.dbschema
-C:\Users\damian\Documents\Visual Studio 2010\Projects\SoccerChampionship\Soccer\obj\Debug\Soccer.Database.dbschema

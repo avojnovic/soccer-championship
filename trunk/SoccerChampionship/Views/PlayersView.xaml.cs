@@ -70,7 +70,8 @@ namespace SoccerChampionship.Views
         {
             foreach (Player p in Context.Players.Where(x => x.ID == 0))
             {
-                Context.Players.Add(p);
+                if (!Context.Players.Contains(p))
+                    Context.Players.Add(p);
             }
             
             Context.SubmitChanges();
@@ -78,11 +79,15 @@ namespace SoccerChampionship.Views
 
         private void PlayersGV_AddingNewDataItem(object sender, Telerik.Windows.Controls.GridView.GridViewAddingNewEventArgs e)
         {
-            Player p = new Player() { ID = 0, Name = "New", Team = Teams.First() };
+            Player p = new Player() { ID = 0, Team = Teams.First() };
             Players.Add(p);
 
             PlayersGV.ItemsSource = Players;
 
+            
+            PlayersGV.CurrentCellInfo = new GridViewCellInfo(PlayersGV.Items[PlayersGV.Items.ItemCount-1], PlayersGV.Columns[0]);
+            PlayersGV.Focus();  
+            PlayersGV.BeginEdit();
 
                         
         }
