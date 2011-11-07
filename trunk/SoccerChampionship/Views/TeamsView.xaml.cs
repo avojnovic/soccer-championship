@@ -63,8 +63,11 @@ namespace SoccerChampionship.Views
                 Button b = (Button)sender;
                 Team t = (Team)b.Tag;
 
-                Context.Teams.Remove(t);
-                Context.SubmitChanges();
+                if (Context.Teams.Contains(t))
+                {
+                    Context.Teams.Remove(t);
+                    Context.SubmitChanges();
+                }
             }
         }
 
@@ -86,7 +89,7 @@ namespace SoccerChampionship.Views
 
         private void TeamsGV_AddingNewDataItem(object sender, Telerik.Windows.Controls.GridView.GridViewAddingNewEventArgs e)
         {
-            Team team = new Team();
+            Team team = new Team() { ID = 0 };
             Teams.Add(team);
 
             TeamsGV.ItemsSource = Teams;

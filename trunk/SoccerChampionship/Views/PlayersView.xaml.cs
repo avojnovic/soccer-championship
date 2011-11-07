@@ -61,8 +61,11 @@ namespace SoccerChampionship.Views
                 Button b = (Button)sender;
                 Player p = (Player)b.Tag;
 
-                Context.Players.Remove(p);
-                Context.SubmitChanges();
+                if (Context.Players.Contains(p))
+                {
+                    Context.Players.Remove(p);
+                    Context.SubmitChanges();
+                }
             }
         }
 

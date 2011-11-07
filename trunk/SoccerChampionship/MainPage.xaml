@@ -52,8 +52,13 @@
                                      NavigateUri="/PlayersView" TargetName="ContentFrame" Content="Jugadores"/>
 
                         <Rectangle Style="{StaticResource DividerStyle}"/>
-                        
-                        
+
+                        <HyperlinkButton Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/TournamentView" TargetName="ContentFrame" Content="Torneos"/>
+
+                        <Rectangle Style="{StaticResource DividerStyle}"/>
+
+
 
                     </StackPanel>
                 </Border>
