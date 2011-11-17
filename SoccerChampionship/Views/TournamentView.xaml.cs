@@ -88,7 +88,7 @@ namespace SoccerChampionship.Views
         {
 
             Tournament tournament = new Tournament() { ID = 0, StartDate=DateTime.Now };
-            tournament.StartDate = DateTime.Now;
+           
 
             Tournament.Add(tournament);
 
