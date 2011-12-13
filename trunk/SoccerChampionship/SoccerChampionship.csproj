@@ -146,6 +146,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SecurityQuestions.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\RegistrationPaymentsView.xaml.cs">
+      <DependentUpon>RegistrationPaymentsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ErrorWindow.xaml.cs">
       <DependentUpon>ErrorWindow.xaml</DependentUpon>
     </Compile>
@@ -193,6 +196,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Controls\BusyIndicator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\RegistrationPaymentsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
