@@ -735,7 +735,7 @@
         <EntityTypeShape EntityType="SoccerModel.GamePayment" Width="1.5" PointX="9.75" PointY="6.75" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="SoccerModel.Player" Width="1.5" PointX="5.25" PointY="8.125" Height="2.7494921874999996" IsExpanded="true" />
         <EntityTypeShape EntityType="SoccerModel.PlayerStatic" Width="1.5" PointX="7.5" PointY="12.125" Height="2.5571907552083317" IsExpanded="true" />
-        <EntityTypeShape EntityType="SoccerModel.RegistrationPayment" Width="1.5" PointX="5.25" PointY="4.625" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoccerModel.RegistrationPayment" Width="2" PointX="5.5" PointY="4.625" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="SoccerModel.Team" Width="1.5" PointX="3" PointY="4.625" Height="2.7494921874999996" IsExpanded="true" />
         <EntityTypeShape EntityType="SoccerModel.Tournament" Width="1.5" PointX="3" PointY="12.125" Height="2.5571907552083317" IsExpanded="true" />
         <AssociationConnector Association="SoccerModel.FK_CategoryID_Category" ManuallyRouted="false">
@@ -753,6 +753,8 @@
         </AssociationConnector>
         <AssociationConnector Association="SoccerModel.FK_IDGameDay_GameDay" ManuallyRouted="false">
           <ConnectorPoint PointX="6.75" PointY="12.251152846153847" />
+          <ConnectorPoint PointX="6.9098244349011209" PointY="12.091328411252725" />
+          <ConnectorPoint PointX="7.0276755650988791" PointY="11.973477281054969" />
           <ConnectorPoint PointX="7.125" PointY="11.876152846153847" />
           <ConnectorPoint PointX="7.125" PointY="9.62474609375" />
           <ConnectorPoint PointX="7.5" PointY="9.62474609375" />
@@ -760,22 +762,14 @@
         <AssociationConnector Association="SoccerModel.FK_Team1_Team" ManuallyRouted="false">
           <ConnectorPoint PointX="3.75" PointY="7.3744921875" />
           <ConnectorPoint PointX="3.75" PointY="10.9682421875" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="10.9682421875" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="10.9682421875" />
-          <ConnectorPoint PointX="6.8227253589743588" PointY="10.9682421875" />
-          <ConnectorPoint PointX="6.9893920256410249" PointY="10.9682421875" />
-          <ConnectorPoint PointX="7.041666666666667" PointY="10.9682421875" />
+          <ConnectorPoint PointX="6.8227253589743588" PointY="10.968242187499998" />
           <ConnectorPoint PointX="7.208333333333333" PointY="10.9682421875" />
           <ConnectorPoint PointX="7.5" PointY="10.9682421875" />
         </AssociationConnector>
         <AssociationConnector Association="SoccerModel.FK_Team2_Team" ManuallyRouted="false">
           <ConnectorPoint PointX="4.1562525" PointY="7.3744921875" />
           <ConnectorPoint PointX="4.1562525" PointY="10.9526171875" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="10.9526171875" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="10.9526171875" />
-          <ConnectorPoint PointX="6.8071003589743588" PointY="10.9526171875" />
-          <ConnectorPoint PointX="6.9737670256410249" PointY="10.9526171875" />
-          <ConnectorPoint PointX="7.041666666666667" PointY="10.9526171875" />
+          <ConnectorPoint PointX="6.8071003589743588" PointY="10.952617187499998" />
           <ConnectorPoint PointX="7.208333333333333" PointY="10.9526171875" />
           <ConnectorPoint PointX="7.5" PointY="10.9526171875" />
         </AssociationConnector>
@@ -789,12 +783,14 @@
         </AssociationConnector>
         <AssociationConnector Association="SoccerModel.FK_TeamID_Team_3" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="7.1172900390625" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="7.1172900390624987" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="7.1172900390625" />
+          <ConnectorPoint PointX="6.885416666666667" PointY="7.1172900390624987" />
+          <ConnectorPoint PointX="7.052083333333333" PointY="7.1172900390625" />
           <ConnectorPoint PointX="9.75" PointY="7.1172900390625" />
         </AssociationConnector>
         <AssociationConnector Association="SoccerModel.FK_PlayerID_Player" ManuallyRouted="false">
           <ConnectorPoint PointX="6.75" PointY="10.812183495192308" />
+          <ConnectorPoint PointX="6.9098244349011217" PointY="10.972007930093428" />
+          <ConnectorPoint PointX="7.0276755650988791" PointY="11.089859060291186" />
           <ConnectorPoint PointX="7.0660744349011217" PointY="11.128257930093428" />
           <ConnectorPoint PointX="7.1839255650988791" PointY="11.246109060291186" />
           <ConnectorPoint PointX="7.3125" PointY="11.374683495192308" />
@@ -808,19 +804,18 @@
           <ConnectorPoint PointX="3.8333333333333335" PointY="9.49974609375" />
           <ConnectorPoint PointX="4.0729191666666669" PointY="9.49974609375" />
           <ConnectorPoint PointX="4.2395858333333329" PointY="9.49974609375" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="9.49974609375" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="9.49974609375" />
           <ConnectorPoint PointX="5.25" PointY="9.49974609375" />
         </AssociationConnector>
         <AssociationConnector Association="SoccerModel.FK_TeamID_Team_2" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="5.7112939453125" />
-          <ConnectorPoint PointX="5.25" PointY="5.7112939453125" />
+          <ConnectorPoint PointX="5.5" PointY="5.7112939453125" />
         </AssociationConnector>
         <AssociationConnector Association="SoccerModel.FK_TournamentID_Tournament" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="12.126152846153847" />
-          <ConnectorPoint PointX="4.875" PointY="11.751152846153847" />
-          <ConnectorPoint PointX="4.875" PointY="6.2856929179687508" />
-          <ConnectorPoint PointX="5.25" PointY="6.2856929179687508" />
+          <ConnectorPoint PointX="4.5" PointY="12.15625" />
+          <ConnectorPoint PointX="6.7615695128205138" PointY="12.15625" />
+          <ConnectorPoint PointX="6.92823617948718" PointY="12.15625" />
+          <ConnectorPoint PointX="6.96875" PointY="12.15625" />
+          <ConnectorPoint PointX="6.96875" PointY="6.797587890625" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
