@@ -1,0 +1,48 @@
+﻿<vw:PageBase x:Class="SoccerChampionship.Views.PlayerStaticsView" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="PlayerStaticsView Page"
+           xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" 
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+           xmlns:vw="clr-namespace:SoccerChampionship.Views">
+    <Grid x:Name="LayoutRoot">
+        <StackPanel x:Name="ContentStackPanel" Style="{StaticResource ContentStackPanelStyle}">
+            <TextBlock Text="Carga de Estadisticas por Jugador" Style="{StaticResource HeaderTextStyle}" />
+            <StackPanel Orientation="Horizontal">
+                <telerik:RadComboBox x:Name="cboTournaments" SelectionChanged="cboTournaments_SelectionChanged" Width="150" Margin="10" HorizontalAlignment="Left" DisplayMemberPath="Name" SelectedValuePath="ID" />
+                <telerik:RadComboBox x:Name="cboGameDays" SelectionChanged="cboGameDays_SelectionChanged" Width="150" Margin="10" HorizontalAlignment="Left" DisplayMemberPath="GameDate" SelectedValuePath="ID" />
+                <telerik:RadComboBox x:Name="cboGames" SelectionChanged="cboGames_SelectionChanged" Width="150" Margin="10" HorizontalAlignment="Left" DisplayMemberPath="DisplayStartTime" SelectedValuePath="ID" />
+                <telerik:RadComboBox x:Name="cboTeam" SelectionChanged="cboTeam_SelectionChanged" Width="150" Margin="10" HorizontalAlignment="Left" DisplayMemberPath="Name" SelectedValuePath="ID" />
+            </StackPanel>
+            <telerik:RadGridView 
+                Height="300" 
+                Name="GV"
+                IsReadOnly="False"
+                AutoGenerateColumns="False"
+                ShowInsertRow="True"
+                CanUserFreezeColumns="True"
+                FrozenColumnCount="2"
+                SelectionUnit="FullRow">
+
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn Header="DNI" DataMemberBinding="{Binding Path=Player.Dni}" />
+                    <telerik:GridViewDataColumn Header="Jugador" DataMemberBinding="{Binding Path=Player.Name}" />
+                    <telerik:GridViewDataColumn Header="Amarillas" DataMemberBinding="{Binding YellowCards}" />
+                    <telerik:GridViewDataColumn Header="Rojas" DataMemberBinding="{Binding RedCard}" />
+                    <telerik:GridViewDataColumn Header="Goles" DataMemberBinding="{Binding Goals}" />
+                </telerik:RadGridView.Columns>
+
+            </telerik:RadGridView>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="btnSave" Content="Guardar" Click="btnSave_Click" Margin="5" />
+                <Button x:Name="btnCancel" Content="Cancelar" Click="btnCancel_Click" Margin="5" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+    
+</vw:PageBase>
