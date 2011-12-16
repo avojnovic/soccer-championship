@@ -12,7 +12,7 @@
            xmlns:vw="clr-namespace:SoccerChampionship.Views">
     <Grid x:Name="LayoutRoot">
         <StackPanel x:Name="ContentStackPanel" Style="{StaticResource ContentStackPanelStyle}">
-            <TextBlock Text="Inscripción Torneo" Style="{StaticResource HeaderTextStyle}" />
+            <TextBlock Text="Fechas y Partidos" Style="{StaticResource HeaderTextStyle}" />
             <telerik:RadComboBox x:Name="cboTournaments" SelectionChanged="cboTournaments_SelectionChanged" Width="200" Margin="20" HorizontalAlignment="Left" />
             <telerik:RadGridView 
                 MaxHeight="300" 

@@ -13,10 +13,11 @@ using System.Windows.Navigation;
 using System.ServiceModel.DomainServices.Client;
 using SoccerChampionship.Web;
 using Telerik.Windows.Controls;
+using vw = SoccerChampionship.Views;
 
 namespace SoccerChampionship.Views
 {
-    public partial class GamesView : PageBase
+    public partial class GamesView : vw::PageBase
     {
 
         public GamesView()
@@ -24,13 +25,12 @@ namespace SoccerChampionship.Views
             InitializeComponent();
 
             Context.Load(Context.GetTeamsQuery());
-            LoadOperation GameDayLoad = Context.Load(Context.GetGameDaysQuery());
+            Context.Load(Context.GetGamesQuery());
             LoadOperation tournamentLoad = Context.Load(Context.GetTournamentsQuery());
 
 
             Tournaments = Context.Tournaments;
             GameDays = Context.GameDays;
-
 
             tournamentLoad.Completed += new EventHandler(tournamentLoad_Completed);
 
@@ -43,11 +43,15 @@ namespace SoccerChampionship.Views
         }
 
 
+
+        public GameDay EditingGameDay { get; set; }
+
         public EntitySet<GameDay> GameDays { get; set; }
 
         public EntitySet<Tournament> Tournaments { get; set; }
 
-        public GameDay EditingGameDay { get; set; }
+
+
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -76,22 +80,9 @@ namespace SoccerChampionship.Views
             }
         }
 
-        private void Save()
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            foreach (GameDay p in Context.GameDays)
-            {
-                if(p.ID == 0)
-                {
-                    if (!Context.GameDays.Contains(p))
-                        Context.GameDays.Add(p);
-                }
-
-                foreach (Game g in p.Games.Where(x => x.ID == 0))
-                {
-                }
-            }
-
-            Context.SubmitChanges();
+            Save();
         }
 
         private void cboTournaments_SelectionChanged(object sender, Telerik.Windows.Controls.SelectionChangedEventArgs e)
@@ -120,14 +111,25 @@ namespace SoccerChampionship.Views
             e.ErrorMessage = "Falta completar el campo.";
         }
 
-        void tournamentLoad_Completed(object sender, EventArgs e)
+        private void GameDayGV_RowDetailsVisibilityChanged(object sender, Telerik.Windows.Controls.GridView.GridViewRowDetailsEventArgs e)
         {
-            cboTournaments.SelectedItem = Tournaments.FirstOrDefault();
+            if (e.Visibility.HasValue && e.Visibility.Value == System.Windows.Visibility.Visible)
+            {
+                RadGridView gv = e.DetailsElement as RadGridView;
+                EditingGameDay = e.Row.DataContext as GameDay;
+                gv.ItemsSource = Context.Games.Where(x => x.GameDayID == EditingGameDay.ID);
+
+
+                if (gv != null)
+                {
+                    gv.PreparingCellForEdit += new EventHandler<GridViewPreparingCellForEditEventArgs>(gv_PreparingCellForEdit);
+                }
+            }
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        void GameDayLoad_Completed(object sender, EventArgs e)
         {
-            Save();
+            cboTournaments.SelectedItem = Tournaments.FirstOrDefault();
         }
 
         private void GameGV_AddingNewDataItem(object sender, Telerik.Windows.Controls.GridView.GridViewAddingNewEventArgs e)
@@ -144,21 +146,6 @@ namespace SoccerChampionship.Views
             GameGV.Focus();
             GameGV.BeginEdit();
         }
-        
-        private void GameDayGV_RowDetailsVisibilityChanged(object sender, Telerik.Windows.Controls.GridView.GridViewRowDetailsEventArgs e)
-        {
-            if (e.Visibility.HasValue && e.Visibility.Value == System.Windows.Visibility.Visible)
-            {
-                RadGridView gv = e.DetailsElement as RadGridView;
-
-                EditingGameDay = e.Row.DataContext as GameDay;
-
-                if (gv != null)
-                {
-                    gv.PreparingCellForEdit += new EventHandler<GridViewPreparingCellForEditEventArgs>(gv_PreparingCellForEdit);
-                }
-            }
-        }
 
         void gv_PreparingCellForEdit(object sender, GridViewPreparingCellForEditEventArgs e)
         {
@@ -166,6 +153,28 @@ namespace SoccerChampionship.Views
             {
                 (e.EditingElement as RadComboBox).ItemsSource = Context.Teams.Where(x=>  x.CategoryID==(cboTournaments.SelectedItem as Tournament).CategoryID);
             }
+        }
+
+        private void Save()
+        {
+            foreach (GameDay p in Context.GameDays)
+            {
+                if(p.ID == 0)
+                {
+                    if (!Context.GameDays.Contains(p))
+                        Context.GameDays.Add(p);
+                }
+            }
+
+            Context.SubmitChanges();
+        }
+
+        void tournamentLoad_Completed(object sender, EventArgs e)
+        {
+            LoadOperation GameDayLoad = Context.Load(Context.GetGameDaysQuery());
+
+            GameDayLoad.Completed += new EventHandler(GameDayLoad_Completed);
+
         }
     }
 }

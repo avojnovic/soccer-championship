@@ -66,6 +66,10 @@
                                      NavigateUri="/GamesView" TargetName="ContentFrame" Content="Fechas y Partidos" />
 
                         <Rectangle Style="{StaticResource DividerStyle}"/>
+                        <HyperlinkButton Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/PlayerStaticsView" TargetName="ContentFrame" Content="Carga de Estadisticas" />
+
+                        <Rectangle Style="{StaticResource DividerStyle}"/>
 
 
                     </StackPanel>

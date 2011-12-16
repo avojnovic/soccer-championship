@@ -149,6 +149,9 @@
     <Compile Include="Views\GamesView.xaml.cs">
       <DependentUpon>GamesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PlayerStaticsView.xaml.cs">
+      <DependentUpon>PlayerStaticsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RegistrationPaymentsView.xaml.cs">
       <DependentUpon>RegistrationPaymentsView.xaml</DependentUpon>
     </Compile>
@@ -203,6 +206,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\GamesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlayerStaticsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
