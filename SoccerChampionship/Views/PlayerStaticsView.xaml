@@ -15,7 +15,7 @@
             <TextBlock Text="Carga de Estadisticas por Jugador" Style="{StaticResource HeaderTextStyle}" />
             <StackPanel Orientation="Horizontal">
                 <telerik:RadComboBox x:Name="cboTournaments" SelectionChanged="cboTournaments_SelectionChanged" Width="150" Margin="10" HorizontalAlignment="Left" DisplayMemberPath="Name" SelectedValuePath="ID" />
-                <telerik:RadComboBox x:Name="cboGameDays" SelectionChanged="cboGameDays_SelectionChanged" Width="150" Margin="10" HorizontalAlignment="Left" DisplayMemberPath="GameDate" SelectedValuePath="ID" />
+                <telerik:RadComboBox x:Name="cboGameDays" SelectionChanged="cboGameDays_SelectionChanged" Width="150" Margin="10" HorizontalAlignment="Left" DisplayMemberPath="DisplayGameDate" SelectedValuePath="ID" />
                 <telerik:RadComboBox x:Name="cboGames" SelectionChanged="cboGames_SelectionChanged" Width="150" Margin="10" HorizontalAlignment="Left" DisplayMemberPath="DisplayStartTime" SelectedValuePath="ID" />
                 <telerik:RadComboBox x:Name="cboTeam" SelectionChanged="cboTeam_SelectionChanged" Width="150" Margin="10" HorizontalAlignment="Left" DisplayMemberPath="Name" SelectedValuePath="ID" />
             </StackPanel>
