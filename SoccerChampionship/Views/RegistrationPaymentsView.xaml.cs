@@ -24,31 +24,40 @@ namespace SoccerChampionship.Views
             
             InitializeComponent();
             Context.Load(Context.GetRegistrationPaymentsQuery());
-            Context.Load(Context.GetTournamentsQuery());
+            LoadOperation tournamentLoad = Context.Load(Context.GetTournamentsQuery());
             Context.Load(Context.GetTeamsQuery());
 
             Teams = Context.Teams;
             Tournament = Context.Tournaments;
+
+            tournamentLoad.Completed += new EventHandler(tournamentLoad_Completed);
+
+            cboTournaments.ItemsSource = Tournament;
+            cboTournaments.DisplayMemberPath = "Name";
+            cboTournaments.SelectedValuePath = "Id";
+            
+
+            
             RegistrationPayment = Context.RegistrationPayments;
-
-            GV.ItemsSource = RegistrationPayment;
-
             GV.PreparedCellForEdit += new EventHandler<Telerik.Windows.Controls.GridViewPreparingCellForEditEventArgs>(GV_PreparedCellForEdit);
-            GV.CellEditEnded += new EventHandler<GridViewCellEditEndedEventArgs>(GV_CellEditEnded);
-
+            GV.CellEditEnded += new EventHandler<Telerik.Windows.Controls.GridViewCellEditEndedEventArgs>(GV_CellEditEnded);
+            GV.ItemsSource = RegistrationPayment;
             GV.CellValidating += new EventHandler<GridViewCellValidatingEventArgs>(GV_CellValidating);
                        
         }
 
-        public EntitySet<Web.Team> Teams { get; set; }
-        
+        void tournamentLoad_Completed(object sender, EventArgs e)
+        {
+            cboTournaments.SelectedItem = Tournament.FirstOrDefault();
+        }
+
+        public EntitySet<Web.Team> Teams { get; set; }        
 
         public RegistrationPayment SelectedRegistrationPayment { get; set; }
 
         public EntitySet<Tournament> Tournament { get; set; }
         public EntitySet<RegistrationPayment> RegistrationPayment { get; set; }
-
-
+        
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
@@ -90,19 +99,16 @@ namespace SoccerChampionship.Views
 
         private void GV_AddingNewDataItem(object sender, Telerik.Windows.Controls.GridView.GridViewAddingNewEventArgs e)
         {
-
-            RegistrationPayment registrationPayment = new RegistrationPayment() { ID = 0, PaidDate = DateTime.Now };
-
-
+            e.Cancel = true;
+            
+            RegistrationPayment registrationPayment = new RegistrationPayment() { ID = 0, PaidDate = DateTime.Now, TournamentID = (int)this.cboTournaments.SelectedValue };
             RegistrationPayment.Add(registrationPayment);
 
-            GV.ItemsSource = RegistrationPayment;
+            GV.ItemsSource = RegistrationPayment.Where(x => x.TournamentID == (cboTournaments.SelectedItem as Tournament).ID); 
 
             GV.CurrentCellInfo = new GridViewCellInfo(GV.Items[GV.Items.ItemCount - 1], GV.Columns[0]);
             GV.Focus();
             GV.BeginEdit();
-
-
         }
 
         void GV_CellEditEnded(object sender, GridViewCellEditEndedEventArgs e)
@@ -122,7 +128,6 @@ namespace SoccerChampionship.Views
 
         void GV_CellValidating(object sender, GridViewCellValidatingEventArgs e)
         {
-
             if (e.Cell.Column.UniqueName == "Tournament")
             {
                 e.IsValid = (e.EditingElement as RadComboBox).SelectedItem != null;
@@ -156,8 +161,17 @@ namespace SoccerChampionship.Views
             if (e.Column.UniqueName == "Team")
             {
                 RadComboBox combo = e.EditingElement as RadComboBox;
-                combo.ItemsSource = Teams;
+                combo.ItemsSource = Teams.Where(x => x.CategoryID == (cboTournaments.SelectedItem as Tournament).CategoryID && 
+                                                                    !RegistrationPayment.Where(t => t.TournamentID == (cboTournaments.SelectedItem as Tournament).ID)
+                                                                                       .Select(y => y.TeamID)
+                                                                                       .Contains(x.ID));
             }
+        }
+
+        private void cboTournaments_SelectionChanged(object sender, Telerik.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            GV.ItemsSource = RegistrationPayment.Where(x => x.TournamentID == (cboTournaments.SelectedItem as Tournament).ID);
+            GV.Rebind();
         }
     }
 }

@@ -13,6 +13,7 @@
     <Grid x:Name="LayoutRoot">
         <StackPanel x:Name="ContentStackPanel" Style="{StaticResource ContentStackPanelStyle}">
             <TextBlock Text="Inscripción Torneo" Style="{StaticResource HeaderTextStyle}" />
+            <telerik:RadComboBox x:Name="cboTournaments" SelectionChanged="cboTournaments_SelectionChanged" Width="200" Margin="20" HorizontalAlignment="Left" />
             <telerik:RadGridView 
                 Height="300" 
                 Name="GV"
@@ -23,22 +24,9 @@
                 CanUserFreezeColumns="True"
                 FrozenColumnCount="2"
                 SelectionUnit="FullRow">
-                <telerik:RadGridView.Columns>
-                    
-                    <telerik:GridViewDataColumn UniqueName="Tournament" Header="Torneo" DataMemberBinding="{Binding Path=Tournament}">
-                        <telerik:GridViewDataColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Path=Tournament.Name}" />
-                            </DataTemplate>
-                        </telerik:GridViewDataColumn.CellTemplate>
-                        <telerik:GridViewDataColumn.CellEditTemplate>
-                            <DataTemplate>
-                                <telerik:RadComboBox DisplayMemberPath="Name" />
-                            </DataTemplate>
-                        </telerik:GridViewDataColumn.CellEditTemplate>
-                    </telerik:GridViewDataColumn>
-
-                    <telerik:GridViewDataColumn UniqueName="Team" Header="Equipo" DataMemberBinding="{Binding Path=Team}">
+                
+                <telerik:RadGridView.Columns>                   
+                    <telerik:GridViewDataColumn UniqueName="Team" Header="Equipo" DataMemberBinding="{Binding Path=Team}" SortMemberPath="Team.Name" GroupMemberPath="Team.Name">
                         <telerik:GridViewDataColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Path=Team.Name}" />

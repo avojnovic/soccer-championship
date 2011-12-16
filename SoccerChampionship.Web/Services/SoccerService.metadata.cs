@@ -114,6 +114,8 @@ namespace SoccerChampionship.Web
 
             public DateTime GameDate { get; set; }
 
+            [Include]
+            [Composition]
             public EntityCollection<Game> Games { get; set; }
 
             public int ID { get; set; }

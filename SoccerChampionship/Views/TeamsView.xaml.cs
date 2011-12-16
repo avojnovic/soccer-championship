@@ -89,6 +89,8 @@ namespace SoccerChampionship.Views
 
         private void TeamsGV_AddingNewDataItem(object sender, Telerik.Windows.Controls.GridView.GridViewAddingNewEventArgs e)
         {
+            e.Cancel = true;
+
             Team team = new Team() { ID = 0 };
             Teams.Add(team);
 
