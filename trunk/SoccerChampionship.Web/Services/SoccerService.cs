@@ -98,7 +98,9 @@ namespace SoccerChampionship.Web.Services
         // To support paging you will need to add ordering to the 'GameDays' query.
         public IQueryable<GameDay> GetGameDays()
         {
-            return this.ObjectContext.GameDays;
+            var res = this.ObjectContext.GameDays.Include("Games");
+
+            return res;
         }
 
         public void InsertGameDay(GameDay gameDay)
@@ -116,6 +118,41 @@ namespace SoccerChampionship.Web.Services
         public void UpdateGameDay(GameDay currentGameDay)
         {
             this.ObjectContext.GameDays.AttachAsModified(currentGameDay, this.ChangeSet.GetOriginal(currentGameDay));
+            
+            foreach (Game game in this.ChangeSet.GetAssociatedChanges(currentGameDay, o => o.Games))
+            {
+                ChangeOperation op = this.ChangeSet.GetChangeOperation(game);
+                switch (op)
+                {
+                    case ChangeOperation.Insert:
+                        if ((game.EntityState != EntityState.Added))
+                        {
+                            if ((game.EntityState != EntityState.Detached))
+                            {
+                                this.ObjectContext.ObjectStateManager.ChangeObjectState(game, EntityState.Added);
+                            }
+                            else
+                            {
+                                this.ObjectContext.AddToGames(game);
+                            }
+                        }
+                        break;
+                    case ChangeOperation.Update:
+                        this.ObjectContext.Games.AttachAsModified(game, this.ChangeSet.GetOriginal(game));
+                        break;
+                    case ChangeOperation.Delete:
+                        if (game.EntityState == EntityState.Detached)
+                        {
+                            this.ObjectContext.Attach(game);
+                        }
+                        this.ObjectContext.DeleteObject(game);
+                        break;
+                    case ChangeOperation.None:
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
         public void DeleteGameDay(GameDay gameDay)

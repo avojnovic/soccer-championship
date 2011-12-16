@@ -62,6 +62,10 @@
                                      NavigateUri="/RegistrationPaymentsView" TargetName="ContentFrame" Content="Inscripción Torneo"/>
 
                         <Rectangle Style="{StaticResource DividerStyle}"/>
+                        <HyperlinkButton Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/GamesView" TargetName="ContentFrame" Content="Fechas y Partidos" />
+
+                        <Rectangle Style="{StaticResource DividerStyle}"/>
 
 
                     </StackPanel>

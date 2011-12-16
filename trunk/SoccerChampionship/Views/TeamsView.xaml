@@ -13,14 +13,15 @@
     <Grid x:Name="LayoutRoot">
         <StackPanel x:Name="ContentStackPanel" Style="{StaticResource ContentStackPanelStyle}">
             <TextBlock Text="Jugadores" Style="{StaticResource HeaderTextStyle}" />
+            
             <telerik:RadGridView 
                 Height="300" 
                 Name="TeamsGV"
-                IsReadOnly="False"
-                AddingNewDataItem="TeamsGV_AddingNewDataItem"
+                IsReadOnly="False"                
                 AutoGenerateColumns="False"
                 ShowInsertRow="True"
                 CanUserFreezeColumns="True"
+                AddingNewDataItem="TeamsGV_AddingNewDataItem"
                 FrozenColumnCount="2"
                 SelectionUnit="FullRow">
                 <telerik:RadGridView.Columns>

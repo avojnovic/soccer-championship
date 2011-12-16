@@ -87,6 +87,8 @@ namespace SoccerChampionship.Views
         private void GV_AddingNewDataItem(object sender, Telerik.Windows.Controls.GridView.GridViewAddingNewEventArgs e)
         {
 
+            e.Cancel = true;
+
             Tournament tournament = new Tournament() { ID = 0, StartDate=DateTime.Now };
            
 
