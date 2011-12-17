@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace SoccerChampionship.Web
 {
@@ -11,7 +10,18 @@ namespace SoccerChampionship.Web
         {
             get
             {
-                return StartTime.ToString("HHmm");
+                return StartTime.ToString("HH:mm");
+            }
+        }
+    }
+
+    public partial class GameDay
+    {
+        public string DisplayGameDate
+        {
+            get
+            {
+                return GameDate.ToString("dd-MMM-yyyy");
             }
         }
     }
