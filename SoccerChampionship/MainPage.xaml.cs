@@ -18,7 +18,7 @@
         {
             InitializeComponent();
             this.loginContainer.Child = new LoginStatus();
-            
+
         }
 
 
