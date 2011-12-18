@@ -6,6 +6,7 @@
   xmlns:uriMapper="clr-namespace:System.Windows.Navigation;assembly=System.Windows.Controls.Navigation"
   xmlns:dataControls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.DataForm.Toolkit" 
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+  xmlns:s="clr-namespace:FirstLook.ServiceModel.DomainServices.Client.Security;assembly=FirstLook.ServiceModel.DomainServices.Client.Security"
   mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480">
 
     <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">
@@ -38,39 +39,42 @@
                 <Border x:Name="LinksBorder" Style="{StaticResource LinksBorderStyle}">
                     <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}">
 
-                        <HyperlinkButton Style="{StaticResource LinkStyle}" 
+                        <HyperlinkButton x:Name="Home" Style="{StaticResource LinkStyle}" 
                                      NavigateUri="/Home" TargetName="ContentFrame" Content="Inicio"/>
 
                         <Rectangle Style="{StaticResource DividerStyle}"/>
 
-                        <HyperlinkButton Style="{StaticResource LinkStyle}" 
-                                     NavigateUri="/TeamsView" TargetName="ContentFrame" Content="Equipos"/>
+                        <HyperlinkButton x:Name="Teams" Style="{StaticResource LinkStyle}" 
+                                    s:Authorization.RequiresRole="Managers"  NavigateUri="/TeamsView" TargetName="ContentFrame" Content="Equipos"/>
 
                         <Rectangle  Style="{StaticResource DividerStyle}"/>
 
                         <HyperlinkButton Style="{StaticResource LinkStyle}" 
-                                     NavigateUri="/PlayersView" TargetName="ContentFrame" Content="Jugadores"/>
+                                    s:Authorization.RequiresRole="Managers"   NavigateUri="/PlayersView" TargetName="ContentFrame" Content="Jugadores"/>
 
                         <Rectangle Style="{StaticResource DividerStyle}"/>
 
                         <HyperlinkButton Style="{StaticResource LinkStyle}" 
-                                     NavigateUri="/TournamentView" TargetName="ContentFrame" Content="Torneos"/>
+                                    s:Authorization.RequiresRole="Managers"   NavigateUri="/TournamentView" TargetName="ContentFrame" Content="Torneos"/>
 
                         <Rectangle Style="{StaticResource DividerStyle}"/>
                         
                         <HyperlinkButton Style="{StaticResource LinkStyle}" 
-                                     NavigateUri="/RegistrationPaymentsView" TargetName="ContentFrame" Content="Inscripción Torneo"/>
+                                    s:Authorization.RequiresRole="Managers"   NavigateUri="/RegistrationPaymentsView" TargetName="ContentFrame" Content="Inscripción Torneo"/>
 
                         <Rectangle Style="{StaticResource DividerStyle}"/>
                         <HyperlinkButton Style="{StaticResource LinkStyle}" 
-                                     NavigateUri="/GamesView" TargetName="ContentFrame" Content="Fechas y Partidos" />
+                                     s:Authorization.RequiresRole="Managers"  NavigateUri="/GamesView" TargetName="ContentFrame" Content="Fechas y Partidos" />
 
                         <Rectangle Style="{StaticResource DividerStyle}"/>
                         <HyperlinkButton Style="{StaticResource LinkStyle}" 
-                                     NavigateUri="/PlayerStaticsView" TargetName="ContentFrame" Content="Carga de Estadisticas" />
+                                     s:Authorization.RequiresRole="Managers"  NavigateUri="/PlayerStaticsView" TargetName="ContentFrame" Content="Carga de Estadisticas" />
 
                         <Rectangle Style="{StaticResource DividerStyle}"/>
+                        <HyperlinkButton Style="{StaticResource LinkStyle}" 
+                                    s:Authorization.RequiresRole="Managers"   NavigateUri="/GamePaymentsView" TargetName="ContentFrame" Content="Pago de Partidos" />
 
+                        <Rectangle Style="{StaticResource DividerStyle}"/>
 
                     </StackPanel>
                 </Border>

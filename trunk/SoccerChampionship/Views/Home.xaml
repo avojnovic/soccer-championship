@@ -15,7 +15,7 @@
         <TextBlock x:Name="HeaderText" Style="{StaticResource HeaderTextStyle}" 
                            Text="{Binding Path=ApplicationStrings.HomePageTitle, Source={StaticResource ResourceWrapper}}"/>
         <TextBlock x:Name="ContentText" Style="{StaticResource ContentTextStyle}" 
-                           Text="Home page content"/>
+                           Text="Ranking de posiciones"/>
 
       </StackPanel>
 
