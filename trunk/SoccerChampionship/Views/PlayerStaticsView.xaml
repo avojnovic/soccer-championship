@@ -24,7 +24,7 @@
                 Name="GV"
                 IsReadOnly="False"
                 AutoGenerateColumns="False"
-                ShowInsertRow="True"
+                ShowInsertRow="False"
                 CanUserFreezeColumns="True"
                 FrozenColumnCount="2"
                 SelectionUnit="FullRow">

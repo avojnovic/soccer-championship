@@ -29,7 +29,7 @@
                     <telerik:GridViewDataColumn Header="Nombre y Apellido" DataMemberBinding="{Binding Name}" />
                     <telerik:GridViewDataColumn Header="Domicilio" DataMemberBinding="{Binding Address}" />
                     <telerik:GridViewDataColumn Header="Telefono" DataMemberBinding="{Binding Phone}" />
-                    <telerik:GridViewDataColumn UniqueName="Team" Header="Equipo" DataMemberBinding="{Binding Path=Team}">
+                    <telerik:GridViewDataColumn UniqueName="Team" Header="Equipo" DataMemberBinding="{Binding Path=Team}" SortMemberPath="Team.Name" GroupMemberPath="Team.Name">
                         <telerik:GridViewDataColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Path=Team.Name}" />

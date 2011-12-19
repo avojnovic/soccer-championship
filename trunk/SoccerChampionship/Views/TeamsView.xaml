@@ -26,7 +26,7 @@
                 SelectionUnit="FullRow">
                 <telerik:RadGridView.Columns>
                     <telerik:GridViewDataColumn UniqueName="Name" Header="Nombre" DataMemberBinding="{Binding Name}"  />
-                    <telerik:GridViewDataColumn UniqueName="Category" Header="Categoria" DataMemberBinding="{Binding Path=Category}">
+                    <telerik:GridViewDataColumn UniqueName="Category" Header="Categoria" DataMemberBinding="{Binding Path=Category}" SortMemberPath="Category.Name" GroupMemberPath="Category.Name">
                         <telerik:GridViewDataColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Path=Category.Name}" />

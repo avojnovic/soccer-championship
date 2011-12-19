@@ -1,25 +1,66 @@
-﻿<navigation:Page
-  x:Class="SoccerChampionship.Home" 
-  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
-  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
-  mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480"  
+﻿<navigation:Page x:Class="SoccerChampionship.Home" 
+   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="Home"
+           xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" 
+           xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"   
   Style="{StaticResource PageStyle}">
 
   <Grid x:Name="LayoutRoot">
-    <ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}" >
-
       <StackPanel x:Name="ContentStackPanel" Style="{StaticResource ContentStackPanelStyle}">
 
-        <TextBlock x:Name="HeaderText" Style="{StaticResource HeaderTextStyle}" 
-                           Text="{Binding Path=ApplicationStrings.HomePageTitle, Source={StaticResource ResourceWrapper}}"/>
-        <TextBlock x:Name="ContentText" Style="{StaticResource ContentTextStyle}" 
-                           Text="Ranking de posiciones"/>
+            <TextBlock x:Name="HeaderText" Style="{StaticResource HeaderTextStyle}"  Text="{Binding Path=ApplicationStrings.HomePageTitle, Source={StaticResource ResourceWrapper}}"/>
+            
+            <StackPanel Orientation="Horizontal">
+                
+                <telerik:RadComboBox x:Name="cboTournamentsRanking" SelectionChanged="cboTournamentsRanking_SelectionChanged"  Width="150" Margin="10" HorizontalAlignment="Left" DisplayMemberPath="Name" SelectedValuePath="ID" />
+            </StackPanel>
+            
+            <telerik:RadGridView 
+                HorizontalAlignment="Left"
+                Name="GVRanking"
+                IsReadOnly="False"
+                AutoGenerateColumns="False"
+                ShowInsertRow="False"
+                CanUserFreezeColumns="True"
+                FrozenColumnCount="2"
+                SelectionUnit="FullRow">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn Header="Equipo" DataMemberBinding="{Binding Name}" />
+                    <telerik:GridViewDataColumn Header="Puntos" DataMemberBinding="{Binding Value}" />
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
 
-      </StackPanel>
+            <TextBlock x:Name="ContentText" Style="{StaticResource ContentTextStyle}" Text="Resultado de Partidos"/>
+            <StackPanel Orientation="Horizontal">
+                    <telerik:RadComboBox x:Name="cboTournaments" SelectionChanged="cboTournaments_SelectionChanged"  Width="150" Margin="10" HorizontalAlignment="Left" DisplayMemberPath="Name" SelectedValuePath="ID" />
+                    <telerik:RadComboBox x:Name="cboGameDays" SelectionChanged="cboGameDays_SelectionChanged" Width="150" Margin="10" HorizontalAlignment="Left" DisplayMemberPath="DisplayGameDate" SelectedValuePath="ID" />
+                    <telerik:RadComboBox x:Name="cboGames" SelectionChanged="cboGames_SelectionChanged" Width="150" Margin="10" HorizontalAlignment="Left" DisplayMemberPath="DisplayStartTime" SelectedValuePath="ID" />
+            </StackPanel>
 
-    </ScrollViewer>
+             <telerik:RadGridView 
+                    Height="120"
+                    HorizontalAlignment="Left"
+                    Name="GV"
+                    IsReadOnly="False"
+                    AutoGenerateColumns="False"
+                    ShowInsertRow="False"
+                    CanUserFreezeColumns="True"
+                    FrozenColumnCount="2"
+                    SelectionUnit="FullRow">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn Header="Equipo" DataMemberBinding="{Binding Name}" />
+                    <telerik:GridViewDataColumn Header="Goles" DataMemberBinding="{Binding Value}" />
+                    <telerik:GridViewDataColumn Header="Amonestados" DataMemberBinding="{Binding Value2}" />
+                    <telerik:GridViewDataColumn Header="Expulsados" DataMemberBinding="{Binding Value3}" />
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+        </StackPanel>
   </Grid>
 
 </navigation:Page>
