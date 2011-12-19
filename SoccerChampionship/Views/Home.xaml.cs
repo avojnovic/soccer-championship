@@ -31,12 +31,13 @@ namespace SoccerChampionship
         public Home()
         {
             InitializeComponent();
+            Context.Load(Context.GetTeamsQuery());
             Context.Load(Context.GetPlayerStaticsQuery());
             Context.Load(Context.GetPlayersQuery());
-            Context.Load(Context.GetTeamsQuery());
+            Context.Load(Context.GetRegistrationPaymentsQuery());
             LoadOperation tournamentLoad = Context.Load(Context.GetTournamentsQuery());
             tournamentLoad.Completed += new EventHandler(tournamentLoad_Completed);
-            
+
 
             this.Title = ApplicationStrings.HomePageTitle;
         }
@@ -69,8 +70,8 @@ namespace SoccerChampionship
 
         void gameDaysLoad_Completed(object sender, EventArgs e)
         {
-             LoadOperation gameLoad = Context.Load(Context.GetGamesQuery());
-             gameLoad.Completed += new EventHandler(gameLoad_Completed);
+            LoadOperation gameLoad = Context.Load(Context.GetGamesQuery());
+            gameLoad.Completed += new EventHandler(gameLoad_Completed);
         }
 
         void gameLoad_Completed(object sender, EventArgs e)
@@ -85,7 +86,7 @@ namespace SoccerChampionship
         /// </summary>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            
+
         }
 
         private void cboTournaments_SelectionChanged(object sender, Telerik.Windows.Controls.SelectionChangedEventArgs e)
@@ -110,70 +111,121 @@ namespace SoccerChampionship
 
             if (cboTournamentsRanking.SelectedItem != null)
             {
+                //var result =
+                //    from puntajes in
+                //        (
+
+                //               from p1 in
+                //                   (
+                //                   from i in
+                //                       (
+                //                           from st in Context.PlayerStatics
+                //                           join pl in Context.Players on st.PlayerID equals pl.ID
+                //                           join gd in Context.GameDays on st.GameDayID equals gd.ID
+                //                           join tr in Context.Tournaments on gd.TournamentID equals tr.ID
+                //                           join tm in Context.Teams on pl.TeamID equals tm.ID
+                //                           join ga in Context.Games on gd.ID equals ga.GameDayID
+                //                           where tr.ID == (int)cboTournamentsRanking.SelectedValue
+                //                           select new { Equipo = tm.Name, Goles = st.Goals, Partido = ga.GameDayID }
+
+                //                        )
+                //                   group i by new { i.Equipo, i.Partido } into g
+                //                   select new { Equipo = g.Key.Equipo, Partido = g.Key.Partido, Goles = g.Sum(go => go.Goles) }
+                //                   )
+                //               from p2 in
+                //                   (
+                //                       from i in
+                //                           (
+                //                               from st in Context.PlayerStatics
+                //                               join pl in Context.Players on st.PlayerID equals pl.ID
+                //                               join gd in Context.GameDays on st.GameDayID equals gd.ID
+                //                               join tr in Context.Tournaments on gd.TournamentID equals tr.ID
+                //                               join tm in Context.Teams on pl.TeamID equals tm.ID
+                //                               join ga in Context.Games on gd.ID equals ga.GameDayID
+                //                               where tr.ID == (int)cboTournamentsRanking.SelectedValue
+                //                               select new { Equipo = tm.Name, Goles = st.Goals, Partido = ga.GameDayID }
+
+                //                            )
+                //                       group i by new { i.Equipo, i.Partido } into g
+                //                       select new { Equipo = g.Key.Equipo, Partido = g.Key.Partido, Goles = g.Sum(go => go.Goles) }
+                //                       )
+                //               where p1.Partido == p2.Partido && p1.Equipo != p2.Equipo
+                //               select new
+                //               {
+                //                   Equipo = p1.Equipo,
+                //                   Puntos =
+                //                       (
+                //                   p1.Goles > p2.Goles ? 3 :
+                //                    p1.Goles < p2.Goles ? 0 :
+                //                     p1.Goles == p2.Goles ? 1 :
+                //                     0
+                //                       )
+                //               }
+                //       )
+                //    group puntajes by puntajes.Equipo into g
+                //    select new Result { Name = g.Key, Value = g.Sum(go => go.Puntos) };
 
 
-                var result =
-                    from puntajes in
-                    (
-
-                           from p1 in
-                               (
-                               from i in
-                                   (
-                                       from st in Context.PlayerStatics
-                                       join pl in Context.Players on st.PlayerID equals pl.ID
-                                       join gd in Context.GameDays on st.GameDayID equals gd.ID
-                                       join tr in Context.Tournaments on gd.TournamentID equals tr.ID
-                                       join tm in Context.Teams on pl.TeamID equals tm.ID
-                                       join ga in Context.Games on gd.ID equals ga.GameDayID
-                                       where tr.ID == (int)cboTournamentsRanking.SelectedValue
-                                       select new { Equipo = tm.Name, Goles = st.Goals, Partido = ga.GameDayID }
-
-                                    )
-                               group i by new { i.Equipo, i.Partido } into g
-                               select new { Equipo = g.Key.Equipo, Partido = g.Key.Partido, Goles = g.Sum(go => go.Goles) }
-                               )
-                           from p2 in
-                               (
-                                   from i in
-                                       (
-                                           from st in Context.PlayerStatics
-                                           join pl in Context.Players on st.PlayerID equals pl.ID
-                                           join gd in Context.GameDays on st.GameDayID equals gd.ID
-                                           join tr in Context.Tournaments on gd.TournamentID equals tr.ID
-                                           join tm in Context.Teams on pl.TeamID equals tm.ID
-                                           join ga in Context.Games on gd.ID equals ga.GameDayID
-                                           where tr.ID == (int)cboTournamentsRanking.SelectedValue
-                                           select new { Equipo = tm.Name, Goles = st.Goals, Partido = ga.GameDayID }
-
-                                        )
-                                   group i by new { i.Equipo, i.Partido } into g
-                                   select new { Equipo = g.Key.Equipo, Partido = g.Key.Partido, Goles = g.Sum(go => go.Goles) }
-                                   )
-                           where p1.Partido == p2.Partido && p1.Equipo!=p2.Equipo
-                           select new {Equipo=p1.Equipo,Puntos= 
-                                                    (
-                                                        p1.Goles>p2.Goles? 3:
-                                                         p1.Goles<p2.Goles? 0:
-                                                          p1.Goles==p2.Goles? 1:
-                                                          0
-                                                    )
-                                            }
-                   )
-                   group puntajes by puntajes.Equipo into g
-                    select new Result { Name = g.Key, Value = g.Sum(go => go.Puntos)};
+                var query = from game in Context.Games
+                            join result in
+                                (
+                                    from st in Context.PlayerStatics
+                                    join pl in Context.Players on st.PlayerID equals pl.ID
+                                    join tm in Context.Teams on pl.TeamID equals tm.ID
+                                    group st by new { GameDayID = st.GameDayID, TeamID = tm.ID } into g
+                                    select new
+                                    {
+                                        GameDayID = g.Key.GameDayID,
+                                        TeamID = g.Key.TeamID,
+                                        Goals = g.Sum(x => x.Goals)
+                                    }
+                                ) on game.GameDayID equals result.GameDayID
+                            where result.TeamID == game.Team1ID || result.TeamID == game.Team2ID
+                            select new
+                            {
+                                GameDayID = game.GameDayID,
+                                GameID = game.ID,
+                                TeamID = result.TeamID,
+                                Goals = result.Goals
+                            };
 
 
 
-                       ;
 
+                var teams = from t in Context.Tournaments
+                            join rp in Context.RegistrationPayments on t.ID equals rp.TournamentID
+                            join tm in Context.Teams on rp.TeamID equals tm.ID
+                            where t.ID == (int)cboTournaments.SelectedValue
+                            select tm;
 
-                List<Result> r = new List<Result>();
-                foreach (Result item in result)
+                teams.ToList().ForEach(x => x.Points = 0);
+
+                foreach (var tm in teams)
                 {
-                    r.Add(item);
+                    foreach (var game in Context.Games.Where(x => x.Team1ID == tm.ID || x.Team2ID == tm.ID))
+                    {
+                        var thisTeam = query.SingleOrDefault(x => x.GameID == game.ID && x.TeamID == tm.ID);
+                        var otherTeam = query.SingleOrDefault(x => x.GameID == game.ID && x.TeamID != tm.ID);
+
+                        if (thisTeam != null && otherTeam != null)
+                        {
+                            tm.Points += thisTeam.Goals > otherTeam.Goals ? 3 : thisTeam.Goals == otherTeam.Goals ? 1 : 0;
+                        }
+                    }
                 }
-                GVRanking.ItemsSource = result;
+
+
+
+                GVRanking.ItemsSource = teams;
+
+
+
+
+                //List<Result> r = new List<Result>();
+                //foreach (Result item in result)
+                //{
+                //    r.Add(item);
+                //}
 
             }
         }
@@ -189,11 +241,12 @@ namespace SoccerChampionship
                             from st in Context.PlayerStatics
                             join pl in Context.Players on st.PlayerID equals pl.ID
                             join gd in Context.GameDays on st.GameDayID equals gd.ID
-                            join ga in Context.Games on  st.GameDayID equals ga.GameDayID
-                            join tm in ( from t in Context.Teams where t.ID==((cboGames.SelectedItem)as Game).Team1ID || t.ID==((cboGames.SelectedItem)as Game).Team2ID select t)
+                            join ga in Context.Games on st.GameDayID equals ga.GameDayID
+                            join tm in
+                                (from t in Context.Teams where t.ID == ((cboGames.SelectedItem) as Game).Team1ID || t.ID == ((cboGames.SelectedItem) as Game).Team2ID select t)
                              on pl.TeamID equals tm.ID
-                            where gd.ID == (int)cboGameDays.SelectedValue && ga.ID==(int)cboGames.SelectedValue
-                            select new { Equipo = tm.Name, Jugador = pl.Name, Goles = st.Goals, Amarillas=st.YellowCards,Rojas=st.RedCard })
+                            where gd.ID == (int)cboGameDays.SelectedValue && ga.ID == (int)cboGames.SelectedValue
+                            select new { Equipo = tm.Name, Jugador = pl.Name, Goles = st.Goals, Amarillas = st.YellowCards, Rojas = st.RedCard })
                     group i by i.Equipo into g
                     select new Result { Name = g.Key, Value = g.Sum(go => go.Goles), Value2 = g.Sum(go => go.Amarillas), Value3 = g.Sum(go => go.Rojas) };
 
