@@ -25,4 +25,10 @@ namespace SoccerChampionship.Web
             }
         }
     }
+
+    public partial class Team
+    {
+        public int Points { get; set; }
+
+    }
 }

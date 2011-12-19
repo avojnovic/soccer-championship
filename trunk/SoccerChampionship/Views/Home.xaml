@@ -32,7 +32,7 @@
                 SelectionUnit="FullRow">
                 <telerik:RadGridView.Columns>
                     <telerik:GridViewDataColumn Header="Equipo" DataMemberBinding="{Binding Name}" />
-                    <telerik:GridViewDataColumn Header="Puntos" DataMemberBinding="{Binding Value}" />
+                    <telerik:GridViewDataColumn Header="Puntos" DataMemberBinding="{Binding Points}" />
                 </telerik:RadGridView.Columns>
             </telerik:RadGridView>
 
