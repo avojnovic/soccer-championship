@@ -35,6 +35,7 @@ namespace SoccerChampionship
             Context.Load(Context.GetPlayerStaticsQuery());
             Context.Load(Context.GetPlayersQuery());
             Context.Load(Context.GetRegistrationPaymentsQuery());
+            
             LoadOperation tournamentLoad = Context.Load(Context.GetTournamentsQuery());
             tournamentLoad.Completed += new EventHandler(tournamentLoad_Completed);
 
@@ -216,7 +217,7 @@ namespace SoccerChampionship
 
 
 
-                GVRanking.ItemsSource = teams;
+                GVRanking.ItemsSource = teams.OrderByDescending(p => p.Points).ToList();
 
 
 

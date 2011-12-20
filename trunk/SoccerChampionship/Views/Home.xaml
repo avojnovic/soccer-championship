@@ -14,7 +14,7 @@
   <Grid x:Name="LayoutRoot">
       <StackPanel x:Name="ContentStackPanel" Style="{StaticResource ContentStackPanelStyle}">
 
-            <TextBlock x:Name="HeaderText" Style="{StaticResource HeaderTextStyle}"  Text="{Binding Path=ApplicationStrings.HomePageTitle, Source={StaticResource ResourceWrapper}}"/>
+            <TextBlock x:Name="HeaderText" Style="{StaticResource HeaderTextStyle}"  Text="Ranking de Posiciones"/>
             
             <StackPanel Orientation="Horizontal">
                 
@@ -24,7 +24,7 @@
             <telerik:RadGridView 
                 HorizontalAlignment="Left"
                 Name="GVRanking"
-                IsReadOnly="False"
+                IsReadOnly="True"
                 AutoGenerateColumns="False"
                 ShowInsertRow="False"
                 CanUserFreezeColumns="True"
@@ -36,7 +36,7 @@
                 </telerik:RadGridView.Columns>
             </telerik:RadGridView>
 
-            <TextBlock x:Name="ContentText" Style="{StaticResource ContentTextStyle}" Text="Resultado de Partidos"/>
+            <TextBlock x:Name="ContentText" Style="{StaticResource HeaderTextStyle}"  Text="Resultado de Partidos"/>
             <StackPanel Orientation="Horizontal">
                     <telerik:RadComboBox x:Name="cboTournaments" SelectionChanged="cboTournaments_SelectionChanged"  Width="150" Margin="10" HorizontalAlignment="Left" DisplayMemberPath="Name" SelectedValuePath="ID" />
                     <telerik:RadComboBox x:Name="cboGameDays" SelectionChanged="cboGameDays_SelectionChanged" Width="150" Margin="10" HorizontalAlignment="Left" DisplayMemberPath="DisplayGameDate" SelectedValuePath="ID" />
@@ -47,7 +47,7 @@
                     Height="120"
                     HorizontalAlignment="Left"
                     Name="GV"
-                    IsReadOnly="False"
+                    IsReadOnly="True"
                     AutoGenerateColumns="False"
                     ShowInsertRow="False"
                     CanUserFreezeColumns="True"
