@@ -90,19 +90,34 @@ namespace SoccerChampionship.Views
             {
                 var players = Context.Players.Where(x => x.TeamID == (int)cboTeam.SelectedValue).ToList();
 
+                //var r=  from st in Context.PlayerStatics
+                        
+                //        join pl in Context.Players on st.PlayerID equals pl.ID
+                //        join tm in Context.Teams on pl.TeamID equals tm.ID
+                //        join gd in Context.GameDays on st.GameDayID equals gd.ID
+                //        join tr in Context.Tournaments on gd.TournamentID equals tr.ID
+                //        join ga in Context.Games on gd.ID equals ga.GameDayID
+                //        where ga.GameDayID==(int)cboGameDays.SelectedValue && ga.ID==(int)cboGames.SelectedValue && (ga.Team1ID==(int)cboTeam.SelectedValue || ga.Team2ID==(int)cboTeam.SelectedValue)
+                //            select st;
+
+                        
                 List<PlayerStatic> statics = new List<PlayerStatic>();
                 players.ForEach(x =>
                     {
-                        if(!Context.PlayerStatics.Select(p => p.PlayerID).Contains(x.ID))
+                        //if(!r.Select(p=>p.PlayerID).Contains(x.ID))
+                        //{
+                        if (!Context.PlayerStatics.Where(p => p.GameDayID == (int)cboGameDays.SelectedValue)
+                                                        .Select(p => p.PlayerID)
+                                                        .Contains(x.ID))
                         {
+
                             Context.PlayerStatics.Add(new PlayerStatic { PlayerID = x.ID, Player = Context.Players.SingleOrDefault(y => y.ID == x.ID), GameDayID = (int)cboGameDays.SelectedValue });
                         }
                     });
 
-                GV.ItemsSource = from st in Context.PlayerStatics
-                                 join pl in Context.Players on st.PlayerID equals pl.ID
-                                 join tm in Context.Teams on pl.TeamID equals tm.ID
-                                 where tm.ID == (int)cboTeam.SelectedValue
+                GV.ItemsSource =  from st in Context.PlayerStatics
+                                  join pl in Context.Players on st.PlayerID equals pl.ID
+                                  where st.GameDayID == (int)cboGameDays.SelectedValue && pl.TeamID == (int)cboTeam.SelectedValue
                                  select st;
             }
         }

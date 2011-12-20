@@ -151,7 +151,32 @@ namespace SoccerChampionship.Views
         {
             if (e.Column.UniqueName == "Team2" || e.Column.UniqueName == "Team1")
             {
-                (e.EditingElement as RadComboBox).ItemsSource = Context.Teams.Where(x=>  x.CategoryID==(cboTournaments.SelectedItem as Tournament).CategoryID);
+                var teams= from tm in Context.Teams
+                           where tm.CategoryID==(cboTournaments.SelectedItem as Tournament).CategoryID
+                            select tm;
+
+                
+                //(e.EditingElement as RadComboBox).ItemsSource = Context.Teams.Where(x=>  x.CategoryID==(cboTournaments.SelectedItem as Tournament).CategoryID);
+
+                var games = from t in Context.Games
+                            where t.GameDayID == EditingGameDay.ID
+                            select t;
+
+                var t1 = from g in games
+                         join t in Context.Teams on g.Team1ID equals  t.ID
+                         select t;
+
+
+                var t2 = from g in games
+                         join t in Context.Teams on g.Team2ID equals t.ID
+                         select t;
+
+                (e.EditingElement as RadComboBox).ItemsSource = Context.Teams.Where(x => x.CategoryID == (cboTournaments.SelectedItem as Tournament).CategoryID
+                                                                                    && !t1.Select(y=>y.ID)
+                                                                                    .Contains(x.ID)
+                                                                                    && !t2.Select(y => y.ID)
+                                                                                    .Contains(x.ID)         
+                                                                                    );
             }
         }
 
